@@ -1,17 +1,17 @@
 package reparacionModel;
 
-public class ElectrodomesticoDTO {
+public class Electrodomestico {
 
 	private int id;
 	private String tipo;
 	
 	
-	public ElectrodomesticoDTO() {
+	public Electrodomestico() {
 		super();
 	}
 
 
-	public ElectrodomesticoDTO(int id, String tipo) {
+	public Electrodomestico(int id, String tipo) {
 		super();
 		this.id = id;
 		this.tipo = tipo;

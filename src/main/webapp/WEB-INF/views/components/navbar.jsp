@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Reparando</a>
+    <a class="navbar-brand" href="/reparacion/index.jsp">Reparando</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,7 +17,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/reparacion/cliente?seleccion=solicitar">Solicitar reparación</a>
+            <a class="nav-link" href="/reparacion/orden?seleccion=solicitar">Solicitar reparación</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

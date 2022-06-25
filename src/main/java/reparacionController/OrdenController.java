@@ -5,7 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import reparacionModel.OrdenServicioDTO;
+import reparacionDao.OrdenDAO;
+import reparacionDao.OrdenDAOImp;
+import reparacionModel.Orden;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,21 +20,32 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 
-public class ClienteController extends HttpServlet {
+public class OrdenController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public ClienteController() {
+	//1-importacion de intefaz DAO
+	private OrdenDAO ordenDAO;
+	
+	
+    public OrdenController() {
         super();
     }
-
+    
+    //2-metodo init se asigna el valor de implementacion a la interfaz DAO
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	this.ordenDAO = new OrdenDAOImp();
+    }
 	
+    
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String seleccion = request.getParameter("seleccion");
 		String vistaJSP = "";
 		switch(seleccion) {
 		case "solicitar":
-			vistaJSP = "/WEB-INF/views/client/order.jsp";
+			vistaJSP = "/WEB-INF/views/cliente/orden.jsp";
 			request.getRequestDispatcher(vistaJSP)
 			.forward(request, response);
 			break;
@@ -42,6 +55,7 @@ public class ClienteController extends HttpServlet {
 	}
 
 	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = 0;
 		try {
@@ -56,49 +70,23 @@ public class ClienteController extends HttpServlet {
 		String direccion = request.getParameter("direccion");
 		String estado = request.getParameter("estado");
 		LocalDate fechaSolicitud = LocalDate.now();
-		LocalDate fechaActualizacion = LocalDate.parse(request.getParameter("fechaActualizacion"));
+		LocalDate fechaActualizacion = LocalDate.now();
 		String descripcion = request.getParameter("descripcion");
 		String electrodomestico = request.getParameter("electrodomestico");
 		
 		//crear orden nueva con solicitudes guardadas
 		if(id == 0 ) {
-			OrdenServicioDTO nuevaOrden = new OrdenServicioDTO(nombre, telefono, direccion, estado, fechaSolicitud, fechaActualizacion, descripcion, electrodomestico);
+			Orden orden = new Orden(nombre, telefono, direccion, estado, fechaSolicitud, fechaActualizacion, descripcion, electrodomestico);
 			try {
-				crearOrden(nuevaOrden);
-				response.sendRedirect("/");
+				ordenDAO.crearOrden(orden);
+				response.sendRedirect("/reparacion/");
 			} catch (SQLException | NamingException e) {
 				e.printStackTrace();
 				response.sendError(500);
 			}
-			
 		}
 	}
 	
 	
-	public Connection getConexion() throws NamingException, SQLException {
-		InitialContext contextoInicial = new InitialContext();
-		DataSource dataSource = (DataSource) contextoInicial.lookup("java:comp/env/jdbc/postgres");
-		return dataSource.getConnection();
-	}
-
-
-	private void crearOrden(OrdenServicioDTO nuevaOrden) throws SQLException, NamingException {
-		String sql = "INSERT INTO ordenes(nombre, telefono, direccion, estado, fecha_solicitud, fecha_actualizacion, descripcion, electrodomestico) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		
-		try (
-				Connection conexion = getConexion();
-				PreparedStatement declaracion = conexion.prepareStatement(sql);
-			) {
-				declaracion.setString(1, nuevaOrden.getNombre());
-				declaracion.setString(2, nuevaOrden.getTelefono());
-				declaracion.setString(3, nuevaOrden.getDireccion());
-				declaracion.setString(4, nuevaOrden.getEstado());
-				declaracion.setObject(5, nuevaOrden.getFechaSolicitud());
-				declaracion.setObject(6, nuevaOrden.getFechaActualizacion());
-				declaracion.setString(7, nuevaOrden.getDescripcion());
-				declaracion.setString(8, nuevaOrden.getElectrodomestico());
-				int filasInsertadas = declaracion.executeUpdate();
-		} 
-	}
-
+	
 }

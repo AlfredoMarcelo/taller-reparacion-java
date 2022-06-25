@@ -2,7 +2,7 @@ package reparacionModel;
 
 import java.time.LocalDate;
 
-public class OrdenServicioDTO {
+public class Orden {
 
 	private int id;
 	private String nombre;
@@ -15,12 +15,12 @@ public class OrdenServicioDTO {
 	private String descripcion;
 	
 	
-	public OrdenServicioDTO() {
+	public Orden() {
 		super();
 	}
 
 
-	public OrdenServicioDTO(String nombre, String telefono, String direccion, String estado,
+	public Orden(String nombre, String telefono, String direccion, String estado,
 			LocalDate fechaSolicitud, LocalDate fechaActualizacion, String electrodomestico,
 			String descripcion) {
 		this.nombre = nombre;
@@ -33,7 +33,7 @@ public class OrdenServicioDTO {
 		this.descripcion = descripcion;
 	}
 	
-	public OrdenServicioDTO(int id, String nombre, String telefono, String direccion, String estado,
+	public Orden(int id, String nombre, String telefono, String direccion, String estado,
 			LocalDate fechaSolicitud, LocalDate fechaActualizacion, String electrodomestico,
 			String descripcion) {
 		this.id = id;

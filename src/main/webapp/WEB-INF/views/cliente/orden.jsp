@@ -17,7 +17,8 @@
 		<div class="row mt-5 d-flex justify-content-center">
 			<h1 class="text-center">Solicitud de reparación</h1>
 			<div class="col">
-				<form class="row g-3">
+				<form action="/reparacion/orden" class="row g-3" method="POST">
+					<input type="hidden" name="id">
 					<div class="col-md-12">
 						<label for="nombre" class="form-label">Nombre completo: </label> 
 						<input type="text" class="form-control" id="nombre" name="nombre">
@@ -28,35 +29,24 @@
 					</div>
 					<div class="col-md-4">
 						<label for="telefono" class="form-label">Telefono: </label> 
-						<input type="password" class="form-control" id="telefono" name="telefono">
+						<input type="text" class="form-control" id="telefono" name="telefono">
 					</div>
 					<div class="col-md-8">
 						<label for="descripcion">Descripcion: </label> 
-						<textarea type="text" class="form-control" id="descripcion"></textarea>
+						<textarea  class="form-control" id="descripcion" name="descripcion"></textarea>
 					</div>
 					<div class="col-md-4">
-						<label for="inputState" class="form-label">Electrodomestico</label> 
-						<select
-							id="inputState" class="form-select">
+						<label for="electrodomestico" class="form-label">Electrodomestico</label> 
+						<select id="electrodomestico" class="form-select" name="electrodomestico">
 							<option selected>Choose...</option>
-							<option>...</option>
+							<option value="tele">tele</option>
+							<option value="celular">celular</option>
 						</select>
 					</div>
-					<!--  
-					<div class="col-md-3">
-						<label for="fechaSolicitud" class="form-label">Ingresar fecha </label> 
-						<input type="text" class="form-control" id="fechaSolicitud" name="fechaSolicitud">
-					</div>
-					-->
 					<div class="col-md-2">
-						<label for="inputZip" class="form-label">Estado: </label> <input
-							type="text" class="form-control" id="inputZip">
+						<label for="estado" class="form-label">Estado: </label> <input
+							type="text" class="form-control" id="estado" name="estado">
 					</div>
-					<div class="col-md-3">
-						<label for="fechaActualizacion" class="form-label">Fecha actualizacion</label> 
-						<input type="date" class="form-control" id="fechaActualizacion" name="fechaActualizacion" >
-					</div>					
-					
 					<div class="col-12">
 						<button type="submit" class="btn btn-primary">Crear orden</button>
 					</div>

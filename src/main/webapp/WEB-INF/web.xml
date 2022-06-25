@@ -13,13 +13,13 @@
   </resource-ref>
   <servlet>
     <description></description>
-    <display-name>ClienteController</display-name>
-    <servlet-name>ClienteController</servlet-name>
-    <servlet-class>reparacionController.ClienteController</servlet-class>
+    <display-name>OrdenController</display-name>
+    <servlet-name>OrdenController</servlet-name>
+    <servlet-class>reparacionController.OrdenController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ClienteController</servlet-name>
-    <url-pattern>/cliente</url-pattern>
+    <servlet-name>OrdenController</servlet-name>
+    <url-pattern>/orden</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
