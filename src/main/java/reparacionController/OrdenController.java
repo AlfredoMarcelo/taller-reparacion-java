@@ -1,7 +1,6 @@
 package reparacionController;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,14 +9,11 @@ import reparacionDao.OrdenDAOImp;
 import reparacionModel.Orden;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 
 public class OrdenController extends HttpServlet {
@@ -49,6 +45,51 @@ public class OrdenController extends HttpServlet {
 			request.getRequestDispatcher(vistaJSP)
 			.forward(request, response);
 			break;
+		case "editar":
+			try{
+				
+				int id = Integer.parseInt(request.getParameter("id"));
+				Orden orden = ordenDAO.findOrdenById(id);
+				request.setAttribute("orden", orden);
+				vistaJSP = "/WEB-INF/views/cliente/orden.jsp";
+				request
+					.getRequestDispatcher(vistaJSP)
+					.forward(request, response)
+				;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			} catch (NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+			break;
+			
+		case "listar":
+			try {
+				List<Orden> ordenes = ordenDAO.findAllOrdenes();
+				request.setAttribute("ordenes", ordenes);
+				vistaJSP = "/WEB-INF/views/servicio/lista-ordenes.jsp";
+				request
+					.getRequestDispatcher(vistaJSP)
+					.forward(request, response)
+				;
+			} catch (SQLException | NamingException e) {				
+				response.sendError(500);
+			}
+			break;
+			
+		case "eliminar":
+			try {
+				int id = Integer.parseInt(request.getParameter("id"));
+				ordenDAO.borrarOrden(id);
+				vistaJSP = "/WEB-INF/views/servicio/lista-ordenes.jsp";
+				response.sendRedirect("/reparacion/orden?seleccion=listar");
+				
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+			}
+			break;
 		}
 		
 		
@@ -79,7 +120,16 @@ public class OrdenController extends HttpServlet {
 			Orden orden = new Orden(nombre, telefono, direccion, estado, fechaSolicitud, fechaActualizacion, descripcion, electrodomestico);
 			try {
 				ordenDAO.crearOrden(orden);
-				response.sendRedirect("/reparacion/");
+				response.sendRedirect("/reparacion/orden?seleccion=listar");
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+		} else {
+			Orden ordenActualizada = new Orden(nombre, telefono, direccion, estado, fechaSolicitud, fechaActualizacion, descripcion, electrodomestico);
+			try {
+				ordenDAO.editarOrden(ordenActualizada);
+				response.sendRedirect("/reparacion/orden?seleccion=listar");
 			} catch (SQLException | NamingException e) {
 				e.printStackTrace();
 				response.sendError(500);

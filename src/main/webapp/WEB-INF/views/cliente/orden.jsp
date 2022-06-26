@@ -18,35 +18,49 @@
 			<h1 class="text-center">Solicitud de reparación</h1>
 			<div class="col">
 				<form action="/reparacion/orden" class="row g-3" method="POST">
-					<input type="hidden" name="id">
+					<input type="hidden" name="id" value="${orden.id}">
 					<div class="col-md-12">
 						<label for="nombre" class="form-label">Nombre completo: </label> 
-						<input type="text" class="form-control" id="nombre" name="nombre">
+						<input type="text" class="form-control" id="nombre" name="nombre" value="${orden.nombre}">
 					</div>
 					<div class="col-md-8">
 						<label for="direccion" class="form-label">Dirección: </label> 
-						<input type="text" class="form-control" id="direccion" placeholder="ej: Bilbao #1234" name="direccion">
+						<input type="text" class="form-control" id="direccion" placeholder="ej: Bilbao #1234" name="direccion" value="${orden.direccion}">
 					</div>
 					<div class="col-md-4">
 						<label for="telefono" class="form-label">Telefono: </label> 
-						<input type="text" class="form-control" id="telefono" name="telefono">
+						<input type="text" class="form-control" id="telefono" name="telefono" value="${orden.telefono}">
 					</div>
 					<div class="col-md-8">
 						<label for="descripcion">Descripcion: </label> 
-						<textarea  class="form-control" id="descripcion" name="descripcion"></textarea>
+						<textarea  class="form-control" id="descripcion" name="descripcion" >
+							${orden.estado}
+						</textarea>
 					</div>
 					<div class="col-md-4">
 						<label for="electrodomestico" class="form-label">Electrodomestico</label> 
 						<select id="electrodomestico" class="form-select" name="electrodomestico">
-							<option selected>Choose...</option>
+							<option selected value="${orden.electrodomestico}">Choose...</option>
 							<option value="tele">tele</option>
 							<option value="celular">celular</option>
 						</select>
 					</div>
-					<div class="col-md-2">
-						<label for="estado" class="form-label">Estado: </label> <input
-							type="text" class="form-control" id="estado" name="estado">
+					<c:if test="${param.id >0}">
+					<div class="col-md-4">
+						<label for="estado" class="form-label">Estado: </label> 
+						<select id="estado" class="form-select" name="estado">
+							<option selected >${orden.descripcion}</option>
+							<option value="Pendiente">Pendiente</option>
+							<option value="En reparación">En reparacion</option>
+							<option value="Reparado">Reparado</option>
+							<option value="Sin solución">Sin solución</option>
+						</select>
 					</div>
+					<div class="col-md-4">
+						<label for="fecha_actualizacion" class="form-label">Fecha actualización: </label>
+						<input class="form-control" type="date" name="fecha_actualizacion" id="fecha_actualizacion">
+					</div>
+					</c:if>
 					<div class="col-12">
 						<button type="submit" class="btn btn-primary">Crear orden</button>
 					</div>

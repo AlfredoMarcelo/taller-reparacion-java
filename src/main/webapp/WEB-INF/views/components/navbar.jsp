@@ -24,8 +24,8 @@
               Service menu
             </a>
             <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-              <li><a class="dropdown-item" href="#">Actualizar orden</a></li>
-              <li><a class="dropdown-item" href="#">Ver ordenes</a></li>
+              <li><a class="dropdown-item" href="/reparacion/orden?seleccion=editar">Actualizar orden</a></li>
+              <li><a class="dropdown-item" href="/reparacion/orden?seleccion=listar">Ver ordenes</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
