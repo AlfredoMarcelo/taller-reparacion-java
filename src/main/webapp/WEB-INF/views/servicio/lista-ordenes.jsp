@@ -22,6 +22,7 @@
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
+					<th>Run</th>
 					<th>Telefono</th>
 					<th>Direccion</th>
 					<th>Descripcion</th>
@@ -37,10 +38,11 @@
 				<tr>
 					<td><c:out value="${orden.id}"/></td>
 					<td><c:out value="${orden.nombre}"/></td>
+					<td><c:out value="${orden.run}"/></td>
 					<td><c:out value="${orden.telefono}"/></td>
 					<td><c:out value="${orden.direccion}"/></td>
 					<td><c:out value="${orden.descripcion}"/></td>
-					<td><c:out value="${orden.estado}"/></td>
+					<td class="text-success fw-bold"><c:out value="${orden.estado}"/></td>
 					<td><c:out value="${orden.electrodomestico}"/></td>
 					<td><c:out value="${orden.fechaSolicitud}"/></td>
 					<td><c:out value="${orden.fechaActualizacion}"/></td>

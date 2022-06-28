@@ -22,13 +22,18 @@
 				<form action="/reparacion/orden" class="row g-3" method="POST">
 					<input type="hidden" name="id" value="${orden.id}">
 					<c:if test="${param.seleccion == 'solicitar'}">
-						<input type="hidden" name="fechaActualizacion" value="2000-10-10">
+						<c:set var="ahora" value="<%=new java.util.Date() %>"/>
+						<input type="hidden" name="fechaActualizacion" value="<fmt:formatDate value="${ahora}" pattern="yyyy-MM-dd"/>">
 						<input type="hidden" name="estado" value="pendiente">
 					</c:if>
 					
-					<div class="col-md-12">
+					<div class="col-md-8">
 						<label for="nombre" class="form-label">Nombre completo: </label> 
 						<input type="text" class="form-control" id="nombre" name="nombre" value="${orden.nombre}">
+					</div>
+					<div class="col-md-4">
+						<label for="run" class="form-label">Run: </label> 
+						<input type="text" class="form-control" id="run" name="run" value="${orden.run}">
 					</div>
 					<div class="col-md-8">
 						<label for="direccion" class="form-label">Dirección: </label> 
@@ -46,8 +51,10 @@
 						<label for="electrodomestico" class="form-label">Electrodomestico</label> 
 						<select id="electrodomestico" class="form-select" name="electrodomestico">
 							<option selected="selected" value="">${orden.electrodomestico}</option>
-							<option value="tele">tele</option>
-							<option value="celular">celular</option>
+							<option value="Televisor">Televisor</option>
+							<option value="Celular">Celular</option>
+							<option value="Computador">Computador</option>
+							<option value="Impresora">Impresora</option>
 						</select>
 					</div>
 					<c:if test="${param.id >0}">

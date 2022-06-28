@@ -12,29 +12,28 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-2">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/reparacion/orden?seleccion=solicitar">Solicitar reparación</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reparacion/orden?seleccion=consultarOrden">Ver estado de mi orden</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Service menu
             </a>
             <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-              <li><a class="dropdown-item" href="/reparacion/orden?seleccion=editar">Actualizar orden</a></li>
               <li><a class="dropdown-item" href="/reparacion/orden?seleccion=listar">Ver ordenes</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="buscar" aria-label="Search">
+        <form class="d-flex" action="/reparacion/orden">
+        	<input type="hidden" value="consultarOrden" name="seleccion">
+          <input class="form-control me-2" type="text" placeholder="buscar" aria-label="Search" name="run">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>

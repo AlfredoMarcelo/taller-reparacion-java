@@ -92,6 +92,24 @@ public class OrdenController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+		case "consultarOrden":
+			try{
+				String run = request.getParameter("run");
+				Orden orden = ordenDAO.findOrdenByRun(run);
+				request.setAttribute("orden", orden);
+				vistaJSP = "/WEB-INF/views/cliente/orden-lectura.jsp";
+				request
+					.getRequestDispatcher(vistaJSP)
+					.forward(request, response)
+				;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			} catch (NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+			break;
 		}
 		
 		
@@ -108,6 +126,7 @@ public class OrdenController extends HttpServlet {
 			System.err.println("id se setea a 0 automatico");
 		}
 		String nombre = request.getParameter("nombre");
+		String run = request.getParameter("run");
 		String telefono = request.getParameter("telefono");
 		String direccion = request.getParameter("direccion");
 		String estado = request.getParameter("estado");
@@ -118,7 +137,7 @@ public class OrdenController extends HttpServlet {
 		
 		//crear orden nueva con solicitudes guardadas
 		if(id == 0 ) {
-			Orden orden = new Orden(nombre, telefono, direccion, descripcion, estado, electrodomestico, fechaSolicitud, fechaActualizacion);
+			Orden orden = new Orden(nombre, run, telefono, direccion, descripcion, estado, electrodomestico, fechaSolicitud, fechaActualizacion);
 			try {
 				ordenDAO.crearOrden(orden);
 				response.sendRedirect("/reparacion/orden?seleccion=listar");
@@ -127,7 +146,7 @@ public class OrdenController extends HttpServlet {
 				response.sendError(500);
 			}
 		} else {
-			Orden ordenActualizada = new Orden(id, nombre, telefono, direccion, descripcion, estado, electrodomestico, fechaSolicitud, fechaActualizacion);
+			Orden ordenActualizada = new Orden(id, nombre, run, telefono, direccion, descripcion, estado, electrodomestico, fechaSolicitud, fechaActualizacion);
 			try {
 				ordenDAO.editarOrden(ordenActualizada);
 				response.sendRedirect("/reparacion/orden?seleccion=listar");

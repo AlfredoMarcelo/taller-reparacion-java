@@ -14,6 +14,7 @@ public interface OrdenDAO {
 	*/
 	public List<Orden> findAllOrdenes() throws SQLException, NamingException;
 	public Orden findOrdenById(int id) throws SQLException, NamingException;
+	public Orden findOrdenByRun(String run) throws SQLException, NamingException;
 	public void crearOrden(Orden orden) throws SQLException, NamingException;
 	public void editarOrden(Orden orden) throws SQLException, NamingException;
 	public void borrarOrden(int id) throws SQLException, NamingException;
