@@ -78,6 +78,8 @@ public class OrdenController extends HttpServlet {
 				response.sendError(500);
 			}
 			break;
+			default:
+				response.sendError(404);
 			
 		case "eliminar":
 			try {
@@ -105,19 +107,18 @@ public class OrdenController extends HttpServlet {
 		} catch (NumberFormatException e) {
 			System.err.println("id se setea a 0 automatico");
 		}
-		
 		String nombre = request.getParameter("nombre");
 		String telefono = request.getParameter("telefono");
 		String direccion = request.getParameter("direccion");
 		String estado = request.getParameter("estado");
 		LocalDate fechaSolicitud = LocalDate.now();
-		LocalDate fechaActualizacion = LocalDate.now();
+		LocalDate fechaActualizacion = LocalDate.parse(request.getParameter("fechaActualizacion"));		
 		String descripcion = request.getParameter("descripcion");
 		String electrodomestico = request.getParameter("electrodomestico");
 		
 		//crear orden nueva con solicitudes guardadas
 		if(id == 0 ) {
-			Orden orden = new Orden(nombre, telefono, direccion, estado, fechaSolicitud, fechaActualizacion, descripcion, electrodomestico);
+			Orden orden = new Orden(nombre, telefono, direccion, descripcion, estado, electrodomestico, fechaSolicitud, fechaActualizacion);
 			try {
 				ordenDAO.crearOrden(orden);
 				response.sendRedirect("/reparacion/orden?seleccion=listar");
@@ -126,7 +127,7 @@ public class OrdenController extends HttpServlet {
 				response.sendError(500);
 			}
 		} else {
-			Orden ordenActualizada = new Orden(nombre, telefono, direccion, estado, fechaSolicitud, fechaActualizacion, descripcion, electrodomestico);
+			Orden ordenActualizada = new Orden(id, nombre, telefono, direccion, descripcion, estado, electrodomestico, fechaSolicitud, fechaActualizacion);
 			try {
 				ordenDAO.editarOrden(ordenActualizada);
 				response.sendRedirect("/reparacion/orden?seleccion=listar");
