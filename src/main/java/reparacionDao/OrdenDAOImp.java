@@ -127,7 +127,7 @@ public class OrdenDAOImp implements OrdenDAO{
 	public Orden findOrdenByRun(String runImport) throws SQLException, NamingException {
 		try (
 				Connection conexion = DbUtils.getConexion();
-				PreparedStatement declaracion = conexion.prepareStatement("SELECT * FROM ordenes WHERE run = ?");
+				PreparedStatement declaracion = conexion.prepareStatement("SELECT id, nombre, run, telefono, direccion, descripcion, estado, electrodomestico, fecha_solicitud, fecha_actualizacion FROM ordenes WHERE run = ?");
 		){
 			declaracion.setString(1, runImport);
 			ResultSet rs = declaracion.executeQuery();

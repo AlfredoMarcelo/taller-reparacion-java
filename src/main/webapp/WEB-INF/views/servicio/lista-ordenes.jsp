@@ -16,45 +16,51 @@
 <body>
 	<%@ include file="/WEB-INF/views/components/navbar.jsp" %>
 	<div class="container">
-	<h1 class="mt-5">Ordenes de listas</h1>		
-		<table class="table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>Run</th>
-					<th>Telefono</th>
-					<th>Direccion</th>
-					<th>Descripcion</th>
-					<th>Estado</th>
-					<th>electrodomestico</th>
-					<th>Fecha Solicitud</th>
-					<th>Fecha Actualización</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-			<c:forEach var="orden" items="${ordenes}">
-				<tr>
-					<td><c:out value="${orden.id}"/></td>
-					<td><c:out value="${orden.nombre}"/></td>
-					<td><c:out value="${orden.run}"/></td>
-					<td><c:out value="${orden.telefono}"/></td>
-					<td><c:out value="${orden.direccion}"/></td>
-					<td><c:out value="${orden.descripcion}"/></td>
-					<td class="text-success fw-bold"><c:out value="${orden.estado}"/></td>
-					<td><c:out value="${orden.electrodomestico}"/></td>
-					<td><c:out value="${orden.fechaSolicitud}"/></td>
-					<td><c:out value="${orden.fechaActualizacion}"/></td>
-					<td>
-						<a class="btn btn-warning" href="${pageContext.request.contextPath}/orden?seleccion=editar&amp;id=${orden.id}">Editar Estado</a> <%-- contextPath en este caso es /cft-web --%>
-						<a class="btn btn-danger" href="${pageContext.request.contextPath}/orden?seleccion=eliminar&amp;id=${orden.id}">Eliminar</a> <%-- contextPath en este caso es /cft-web --%>
-					</td>
-				</tr>
-			</c:forEach>			
-			</tbody>
-		</table>
-		<a class="btn btn-success" href="/reparacion/orden?seleccion=solicitar">Crear</a>
+		<div class="row mt-2">
+			<div class="col">
+			<h1 class="mt-5 text-center">Ordenes registradas</h1>		
+				<table class="table mt-3">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Run</th>
+							<th>Telefono</th>
+							<th>Direccion</th>
+							<th>Descripcion</th>
+							<th>Estado</th>
+							<th>electrodomestico</th>
+							<th>Fecha Solicitud</th>
+							<th>Fecha Actualización</th>
+							<th>Acción</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="orden" items="${ordenes}">
+						<tr>
+							<td><c:out value="${orden.id}"/></td>
+							<td><c:out value="${orden.nombre}"/></td>
+							<td><c:out value="${orden.run}"/></td>
+							<td><c:out value="${orden.telefono}"/></td>
+							<td><c:out value="${orden.direccion}"/></td>
+							<td><c:out value="${orden.descripcion}"/></td>
+							<td class="text-success fw-bold"><c:out value="${orden.estado}"/></td>
+							<td><c:out value="${orden.electrodomestico}"/></td>
+							<td><c:out value="${orden.fechaSolicitud}"/></td>
+							<td><c:out value="${orden.fechaActualizacion}"/></td>
+							<td>
+								<a class="btn btn-warning" href="${pageContext.request.contextPath}/orden?seleccion=editar&amp;id=${orden.id}">Editar Estado</a> <%-- contextPath en este caso es /cft-web --%>
+								<a class="btn btn-danger" href="${pageContext.request.contextPath}/orden?seleccion=eliminar&amp;id=${orden.id}">Eliminar</a> <%-- contextPath en este caso es /cft-web --%>
+							</td>
+						</tr>
+					</c:forEach>			
+					</tbody>
+				</table>
+				<a class="btn btn-success" href="/reparacion/orden?seleccion=solicitar">Crear</a>
+				</div>
+			
+			</div>
 		</div>
 		<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

@@ -14,13 +14,10 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-2">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/reparacion/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/reparacion/orden?seleccion=solicitar">Solicitar reparación</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/reparacion/orden?seleccion=consultarOrden">Ver estado de mi orden</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,8 +30,8 @@
         </ul>
         <form class="d-flex" action="/reparacion/orden">
         	<input type="hidden" value="consultarOrden" name="seleccion">
-          <input class="form-control me-2" type="text" placeholder="buscar" aria-label="Search" name="run">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="text" placeholder="ingrese Run" aria-label="Search" name="run">
+          <button class="btn btn-outline-success" type="submit">Buscar mi orden</button>
         </form>
       </div>
     </div>

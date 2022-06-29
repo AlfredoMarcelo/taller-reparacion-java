@@ -9,10 +9,18 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/components/navbar.jsp"%>
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="https://kh7.com/wp-content/uploads/2020/07/como-quitar-grasa-header-electrodomesticos.jpg" class="d-block w-100" alt="...">
+		    </div>
+		  </div>
+		</div>
 	<div class="container">
 		<div class="row mt-5">
-			<div class="col">				
-				<h1>hola desde inicio</h1>
+			<div class="col text-center">		
+				<h1>Reparanado</h1>
+				<h3>Servicio de reparación de electrodomesticos</h3>
 			</div>
 		</div>
 	</div>

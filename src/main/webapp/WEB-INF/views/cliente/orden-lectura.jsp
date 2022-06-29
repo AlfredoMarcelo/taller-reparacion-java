@@ -18,19 +18,16 @@
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col mt-5">
-				<ul>
-					<li>nombre</li>
-					<li>run</li>
-					<li>electrodomestico</li>
-					<li>estado</li>
-					<li>fecha actualizacion estado</li>
-				</ul>
-				<c:forEach var="orden" items="${ordenes}">
-					<ul>
-						<li><c:out value="${orden.nombre}"/></li>
-						<li><c:out value="${orden.descripcion}"/></li>
-				</ul>
-				</c:forEach>
+				<p class="fs-3 text-center">Estado de servicio</p>
+				
+				<div class="card">
+				  <div class="card-body">
+				    <p class="card-title h5">Orden numero N° <span><c:out value="${orden.id}"/></span></p>
+				    <p class="card-text"><span><c:out value="${orden.nombre}"/></span>, le informamos que su <span><c:out value="${orden.electrodomestico}"/></span>, se encuentra en el siguiente estado: <span><c:out value="${orden.estado}"/></span></p>
+				    <p class="card-text"><small class="text-muted">Fecha de actualización <span><c:out value="${orden.fechaActualizacion}"/></span></small></p>
+				  </div>
+				  <img src="https://www.cronista.com/files/image/421/421970/61e859118ddd4.jpg" class="card-img-bottom" alt="reparacion">
+				</div>
 			</div>
 		</div>
 	</div>
